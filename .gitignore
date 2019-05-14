@@ -1,0 +1,8 @@
+
+workshop/examples/uvLight/.travis.yml
+
+workshop/examples/ambientLight/.travis.yml
+
+workshop/examples/allSensors/.travis.yml
+
+workshop/examples/temperatureAndPressure/.travis.yml
