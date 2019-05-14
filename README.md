@@ -1,1 +1,3 @@
 # tingg-weather
+
+You can find the examples from our workshops here...
