@@ -56,6 +56,7 @@ char buf[12];
 long lastMsg = 0;
 char msg[50];
 int value = 0;
+int loop_counter = 0;
 
 void setup_wifi() {
 
@@ -251,10 +252,21 @@ void printValues() {
 }
 
 void loop() {
-    if (!client.connected()) {
-      reconnect();
-    }
-    client.loop();
+  if (!client.connected()) {
+    reconnect();
+  }
+  // check if message for listened topics, like for led, is arrived
+  client.loop();
+
+  // short waiting time to check incoming messages more frequently
+  delay(100);
+
+  // slow down the publishing of new data repecting short delay
+  if (loop_counter > 100)
+  {
     printValues();
-    delay(10000);
+    loop_counter = 0;
+  }
+  else
+    loop_counter++;
 }
