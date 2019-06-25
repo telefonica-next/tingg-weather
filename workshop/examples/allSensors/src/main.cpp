@@ -207,12 +207,15 @@ void printValues() {
       uint16_t uv = readVEML6070();
       Serial.print("UV A = ");
       Serial.print(uv);
-      Serial.println(" steps");
+      Serial.println(" uW/cm^2/steps");
 
       float uv_translated = 5.625f * uv;
-      Serial.print("UV A = ");
+      Serial.print("Publish uv message: ");
       Serial.print(uv_translated);
       Serial.println(" uW/cm^2");
+      String str_uv = String(uv_translated);
+      str_uv.toCharArray(msg, 50);
+      client.publish("uv", msg);
 
       float lux = readVEML7700();
       //publish to mqtt
@@ -244,6 +247,7 @@ void printValues() {
       Serial.println(msg);
       client.publish("button", msg);
 
+      Serial.println("---------------------------");
 }
 
 void loop() {
